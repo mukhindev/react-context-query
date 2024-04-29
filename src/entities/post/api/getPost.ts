@@ -1,4 +1,4 @@
-import { createRequest } from "../../../utils/createRequest";
+import { createJsonPlaceholderRequest } from "../../../domains/jsonPlaceholder/api";
 
 type Request = {
   postId: number;
@@ -15,11 +15,13 @@ type Response = {
   body: string;
 };
 
-export const getPost = createRequest<Request, Response>((options) => {
-  const { postId, ...other } = options;
+export const getPost = createJsonPlaceholderRequest<Request, Response>(
+  (options) => {
+    const { postId, ...other } = options;
 
-  return {
-    url: `/posts/${postId}`,
-    ...other,
-  };
-});
+    return {
+      url: `/posts/${postId}`,
+      ...other,
+    };
+  },
+);
